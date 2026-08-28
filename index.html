@@ -1,1397 +1,237 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Café Aroma - Cafeteria Premium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-light: #fdf9f5;
-            --card-light: #ffffff;
-            --dark-main: #1a1410;
-            --dark-secondary: #2d231c;
-            --accent-coffee: #6f4e37;
-            --accent-coffee-light: #8b6b4f;
-            --accent-cream: #d4c0a8;
-            --accent-gold: #c9a96e;
-            --text-dark: #1a1410;
-            --text-medium: #5a4e44;
-            --text-light: #8a7a6e;
-            --border-light: #f0e8e0;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.14);
-            --radius-sm: 12px;
-            --radius-md: 20px;
-            --radius-lg: 32px;
-            --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* TOP BAR COM WHATSAPP */
-        .top-bar {
-            background: var(--dark-main);
-            color: white;
-            padding: 8px 0;
-            font-size: 0.85rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .top-bar-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .top-bar-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .whatsapp-link {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .whatsapp-link:hover {
-            color: #25d366;
-        }
-
-        .whatsapp-icon {
-            width: 24px;
-            height: 24px;
-            background: #25d366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            color: white;
-        }
-
-        .top-bar-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .top-bar-link {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .top-bar-link:hover {
-            color: white;
-        }
-
-        /* HEADER MODERNO */
-        .modern-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-light);
-            margin-bottom: 40px;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-weight: 900;
-            font-size: 1.8rem;
-            letter-spacing: -0.5px;
-            color: var(--dark-main);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--dark-main);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-coffee);
-            font-size: 1.4rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-medium);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--dark-main);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-coffee);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .btn-reserva {
-            background: var(--dark-main);
-            color: white !important;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            transition: var(--transition);
-        }
-
-        .btn-reserva:hover {
-            background: var(--dark-secondary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-reserva::after {
-            display: none;
-        }
-
-        /* HERO SECTION */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            padding: 60px 0;
-            margin-bottom: 40px;
-        }
-
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            color: var(--dark-main);
-        }
-
-        .hero-content h1 span {
-            color: var(--accent-coffee);
-            font-style: italic;
-        }
-
-        .hero-subtitle {
-            font-size: 1.15rem;
-            color: var(--text-medium);
-            margin-bottom: 30px;
-            max-width: 500px;
-            font-weight: 400;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--accent-coffee);
-            color: white;
-            padding: 16px 32px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary:hover {
-            background: #5a3d2b;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--dark-main);
-            padding: 16px 32px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            border: 2px solid var(--dark-main);
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-outline:hover {
-            background: var(--dark-main);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* ESPAÇO PARA IMAGEM - HERO */
-        .hero-image-wrapper {
-            position: relative;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            aspect-ratio: 4/5;
-            background: linear-gradient(145deg, #f5e6d8 0%, #e8d5c4 100%);
-        }
-
-        .hero-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-image-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #d4c0a8 0%, #c4b098 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-coffee);
-            font-size: 5rem;
-            position: relative;
-        }
-
-        .hero-image-placeholder::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(111,78,55,0.25) 0%, transparent 60%);
-        }
-
-        .hero-badge {
-            position: absolute;
-            bottom: 24px;
-            left: 24px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 16px 24px;
-            border-radius: var(--radius-sm);
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 2;
-        }
-
-        .hero-badge-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--accent-coffee);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .hero-badge-text {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--text-dark);
-        }
-
-        .hero-badge-subtext {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-
-        /* STATS SECTION */
-        .stats-section {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            padding: 40px 0;
-            border-top: 1px solid var(--border-light);
-            border-bottom: 1px solid var(--border-light);
-            margin-bottom: 60px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--dark-main);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 8px;
-        }
-
-        .stat-divider {
-            width: 40px;
-            height: 2px;
-            background: var(--accent-coffee);
-            margin: 12px auto;
-        }
-
-        /* MENU SECTION */
-        .section-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .section-tag {
-            display: inline-block;
-            background: var(--accent-coffee);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--dark-main);
-            line-height: 1.2;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 16px auto 0;
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 60px;
-        }
-
-        .menu-card {
-            background: var(--card-light);
-            border-radius: var(--radius-md);
-            padding: 0;
-            transition: var(--transition);
-            border: 1px solid var(--border-light);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .menu-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--accent-coffee);
-        }
-
-        .menu-card-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(145deg, #f5e6d8 0%, #e8d5c4 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .menu-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .menu-card-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 70% 30%, rgba(111,78,55,0.15) 0%, transparent 70%);
-        }
-
-        .menu-card-content {
-            padding: 24px 28px;
-        }
-
-        .menu-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--dark-main);
-        }
-
-        .menu-card-description {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .menu-card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-        }
-
-        .menu-price {
-            font-weight: 700;
-            color: var(--accent-coffee);
-            font-size: 1.3rem;
-        }
-
-        .menu-price span {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            font-weight: 400;
-        }
-
-        .btn-add {
-            background: var(--dark-main);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-add:hover {
-            background: var(--accent-coffee);
-            transform: scale(1.05);
-        }
-
-        /* GALERIA DE IMAGENS */
-        .gallery-section {
-            margin-bottom: 60px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-
-        .gallery-item {
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            aspect-ratio: 1/1;
-            background: linear-gradient(145deg, #f5e6d8 0%, #e8d5c4 100%);
-            position: relative;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: var(--shadow-md);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery-item-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--accent-coffee);
-        }
-
-        .gallery-item-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(26, 20, 16, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover .gallery-item-overlay {
-            opacity: 1;
-        }
-
-        .gallery-item-overlay span {
-            color: white;
-            font-size: 2rem;
-        }
-
-        /* HIGHLIGHT SECTION */
-        .highlight-section {
-            background: var(--dark-main);
-            border-radius: var(--radius-lg);
-            padding: 60px;
-            margin-bottom: 60px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .highlight-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(111,78,55,0.3) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .highlight-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .highlight-tag {
-            display: inline-block;
-            background: var(--accent-coffee);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .highlight-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-
-        .highlight-description {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 24px;
-            line-height: 1.6;
-        }
-
-        .highlight-image {
-            position: relative;
-            z-index: 1;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            aspect-ratio: 1/1;
-            background: linear-gradient(145deg, #f5e6d8 0%, #e8d5c4 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-        }
-
-        .highlight-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* TESTIMONIAL SECTION */
-        .testimonial-section {
-            background: var(--card-light);
-            border-radius: var(--radius-lg);
-            padding: 60px;
-            margin-bottom: 60px;
-            color: var(--text-dark);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .testimonial-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(111,78,55,0.08) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .testimonial-quote {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            line-height: 1.4;
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
-            color: var(--dark-main);
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-avatar {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--accent-coffee);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: white;
-        }
-
-        .testimonial-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--dark-main);
-        }
-
-        .testimonial-role {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        /* CTA SECTION */
-        .cta-section {
-            text-align: center;
-            padding: 60px 0;
-            background: linear-gradient(145deg, #fdf9f5 0%, #f5ebe2 100%);
-            border-radius: var(--radius-lg);
-            margin-bottom: 60px;
-        }
-
-        .cta-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--dark-main);
-            margin-bottom: 16px;
-        }
-
-        .cta-content p {
-            font-size: 1.1rem;
-            color: var(--text-medium);
-            max-width: 500px;
-            margin: 0 auto 32px;
-        }
-
-        /* FOOTER MODERNO */
-        .modern-footer {
-            background: var(--dark-main);
-            color: white;
-            padding: 60px 0 30px;
-            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-brand .logo {
-            color: white;
-            margin-bottom: 16px;
-        }
-
-        .footer-brand .logo-icon {
-            background: var(--accent-coffee);
-            color: white;
-        }
-
-        .footer-brand p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.95rem;
-            max-width: 300px;
-        }
-
-        .footer-column h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color: var(--accent-cream);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-column ul li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.95rem;
-        }
-
-        .footer-column ul li a:hover {
-            color: white;
-            padding-left: 4px;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 24px;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: white;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--accent-coffee);
-            color: white;
-            transform: translateY(-4px);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 992px) {
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                text-align: center;
-            }
-            
-            .hero-content h1 {
-                font-size: 3rem;
-            }
-            
-            .hero-subtitle {
-                margin: 0 auto 30px;
-            }
-            
-            .hero-actions {
-                justify-content: center;
-            }
-            
-            .hero-image-wrapper {
-                max-width: 500px;
-                margin: 0 auto;
-            }
-            
-            .menu-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .stats-section {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .highlight-section {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 40px 24px;
-            }
-            
-            .highlight-image {
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .top-bar-content {
-                flex-direction: column;
-                gap: 8px;
-                padding: 8px 0;
-            }
-            
-            .modern-header {
-                flex-direction: column;
-                gap: 16px;
-                padding: 16px 0;
-            }
-            
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-            
-            .menu-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-section {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-            
-            .testimonial-section {
-                padding: 40px 24px;
-            }
-            
-            .testimonial-quote {
-                font-size: 1.5rem;
-            }
-            
-            .cta-content h2 {
-                font-size: 2.2rem;
-            }
-            
-            .highlight-title {
-                font-size: 2rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 16px;
-            }
-            
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            
-            .btn-primary,
-            .btn-outline {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .hero-actions {
-                flex-direction: column;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-            
-            .highlight-image {
-                font-size: 5rem;
-                aspect-ratio: 4/3;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burger & Cia - Lanchonete Artesanal</title>
+  <style>
+    :root {
+      --primary: #ff4757;
+      --secondary: #ffa502;
+      --dark: #2f3542;
+      --light: #f1f2f6;
+      --whatsapp: #25d366;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+    }
+
+    /* Hero Header */
+    header {
+      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
+                  url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px 80px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    header p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Botão Principal */
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--whatsapp);
+      color: white;
+      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .btn-whatsapp:hover {
+      transform: scale(1.05);
+      background-color: #1eb954;
+    }
+
+    /* Seção Cardápio */
+    .container {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.2rem;
+      color: var(--dark);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: 15px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    /* Botão Flutuante */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: var(--whatsapp);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 60px;
+    }
+
+    footer p {
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
-    <!-- TOP BAR COM WHATSAPP -->
-    <div class="top-bar">
-        <div class="container">
-            <div class="top-bar-content">
-                <div class="top-bar-left">
-                    <a href="https://wa.me/5511999999999" class="whatsapp-link" target="_blank">
-                        <span class="whatsapp-icon">✆</span>
-                        WhatsApp: (11) 99999-9999
-                    </a>
-                    <span style="color: rgba(255,255,255,0.4);">|</span>
-                    <span style="color: rgba(255,255,255,0.7);">☕ Aberto todos os dias - 7h às 22h</span>
-                </div>
-                <div class="top-bar-right">
-                    <a href="#" class="top-bar-link">📍 Rua do Café, 123</a>
-                    <a href="https://wa.me/5511999999999" class="top-bar-link" target="_blank">Pedir pelo WhatsApp</a>
-                </div>
-            </div>
+
+  <header>
+    <h1>Burger & Cia</h1>
+    <p>Hambúrgueres artesanais, porções crocantes e os melhores milkshakes da cidade.</p>
+    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido." class="btn-whatsapp" target="_blank">
+      🍔 Fazer Pedido no WhatsApp
+    </a>
+  </header>
+
+  <main class="container">
+    <h2 class="section-title">Mais Pedidos</h2>
+    
+    <div class="menu-grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Hambúrguer Artesanal">
+        <div class="card-content">
+          <h3 class="card-title">X-Monster Artesanal</h3>
+          <p class="card-desc">Hambúrguer de 180g, cheddar fatiado, bacon crocante e molho especial no pão brioche.</p>
+          <div class="card-footer">
+            <span class="card-price">R$ 32,90</span>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="container">
-        <!-- HEADER MODERNO -->
-        <header class="modern-header">
-            <a href="#" class="logo">
-                <div class="logo-icon">☕</div>
-                Café Aroma
-            </a>
-            <nav class="nav-links">
-                <a href="#">Início</a>
-                <a href="#">Cardápio</a>
-                <a href="#">Galeria</a>
-                <a href="#">Sobre</a>
-                <a href="#">Contato</a>
-                <a href="#" class="btn-reserva">Reservar Mesa</a>
-            </nav>
-        </header>
-
-        <!-- HERO SECTION -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>O melhor <span>café</span> da cidade</h1>
-                <p class="hero-subtitle">Grãos selecionados, torra artesanal e um ambiente acolhedor para você desfrutar momentos especiais.</p>
-                <div class="hero-actions">
-                    <a href="#" class="btn-primary">
-                        Ver Cardápio
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </a>
-                    <a href="https://wa.me/5511999999999" class="btn-outline" target="_blank">Pedir Agora</a>
-                </div>
-            </div>
-            <div class="hero-image-wrapper">
-                <!-- COLOQUE SUA IMAGEM AQUI -->
-                <div class="hero-image-placeholder">
-                    ☕
-                </div>
-                <!-- Para usar imagem real, substitua por: -->
-                <!-- <img src="sua-imagem.jpg" alt="Café Aroma"> -->
-                <div class="hero-badge">
-                    <div class="hero-badge-icon">★</div>
-                    <div>
-                        <div class="hero-badge-text">4.9 Avaliação</div>
-                        <div class="hero-badge-subtext">+3.000 clientes satisfeitos</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- STATS SECTION -->
-        <section class="stats-section">
-            <div class="stat-item">
-                <div class="stat-number">12+</div>
-                <div class="stat-divider"></div>
-                <div class="stat-label">Anos de Tradição</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">50k</div>
-                <div class="stat-divider"></div>
-                <div class="stat-label">Cafés Servidos</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">25+</div>
-                <div class="stat-divider"></div>
-                <div class="stat-label">Opções no Cardápio</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">4.9</div>
-                <div class="stat-divider"></div>
-                <div class="stat-label">Nota dos Clientes</div>
-            </div>
-        </section>
-
-        <!-- MENU SECTION -->
-        <section>
-            <div class="section-header">
-                <div class="section-tag">Nosso Cardápio</div>
-                <h2 class="section-title">Especialidades da casa</h2>
-                <p class="section-subtitle">Selecionamos os cafés e acompanhamentos mais amados pelos nossos clientes. Feitos com amor e ingredientes premium.</p>
-            </div>
-            
-            <div class="menu-grid">
-                <div class="menu-card">
-                    <div class="menu-card-image">
-                        <!-- COLOQUE SUA IMAGEM AQUI -->
-                        <!-- <img src="cafe-espresso.jpg" alt="Espresso"> -->
-                        ☕
-                    </div>
-                    <div class="menu-card-content">
-                        <h3>Espresso Premium</h3>
-                        <p class="menu-card-description">Café espresso encorpado com grãos 100% arábica, torra média e crema aveludada.</p>
-                        <div class="menu-card-footer">
-                            <div class="menu-price">R$ 8<span>,90</span></div>
-                            <button class="btn-add">
-                                Adicionar
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <path d="M7 3V11M3 7H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="menu-card">
-                    <div class="menu-card-image">
-                        <!-- COLOQUE SUA IMAGEM AQUI -->
-                        <!-- <img src="cappuccino.jpg" alt="Cappuccino"> -->
-                        🥛
-                    </div>
-                    <div class="menu-card-content">
-                        <h3>Cappuccino Italiano</h3>
-                        <p class="menu-card-description">Espresso, leite vaporizado e espuma cremosa com toque de canela e chocolate.</p>
-                        <div class="menu-card-footer">
-                            <div class="menu-price">R$ 12<span>,90</span></div>
-                            <button class="btn-add">
-                                Adicionar
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <path d="M7 3V11M3 7H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="menu-card">
-                    <div class="menu-card-image">
-                        <!-- COLOQUE SUA IMAGEM AQUI -->
-                        <!-- <img src="bolo-chocolate.jpg" alt="Bolo de Chocolate"> -->
-                        🍰
-                    </div>
-                    <div class="menu-card-content">
-                        <h3>Bolo de Chocolate</h3>
-                        <p class="menu-card-description">Fatia generosa de bolo de chocolate belga com calda quente e morangos frescos.</p>
-                        <div class="menu-card-footer">
-                            <div class="menu-price">R$ 15<span>,90</span></div>
-                            <button class="btn-add">
-                                Adicionar
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <path d="M7 3V11M3 7H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="menu-card">
-                    <div class="menu-card-image">
-                        <!-- COLOQUE SUA IMAGEM AQUI -->
-                        <!-- <img src="croissant.jpg" alt="Croissant"> -->
-                        🥐
-                    </div>
-                    <div class="menu-card-content">
-                        <h3>Croissant Francês</h3>
-                        <p class="menu-card-description">Croissant artesanal folhado, assado diariamente, com manteiga e geleia de frutas.</p>
-                        <div class="menu-card-footer">
-                            <div class="menu-price">R$ 11<span>,90</span></div>
-                            <button class="btn-add">
-                                Adicionar
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <path d="M7 3V11M3 7H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="menu-card">
-                    <div class="menu-card-image">
-                        <!-- COLOQUE SUA IMAGEM AQUI -->
-                        <!-- <img src="cha-gelado.jpg" alt="Chá Gelado"> -->
-                        🧊
-                    </div>
-                    <div class="menu-card-content">
-                        <h3>Chá Gelado</h3>
-                        <p class="menu-card-description">Chá preto gelado com pêssego e hortelã. Refrescante e naturalmente saboroso.</p>
-                        <div class="menu-card-footer">
-                            <div class="menu-price">R$ 10<span>,90</span></div>
-                            <button class="btn-add">
-                                Adicionar
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <path d="M7 3V11M3 7H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="menu-card">
-                    <div class="menu-card-image">
-                        <!-- COLOQUE SUA IMAGEM AQUI -->
-                        <!-- <img src="pao-queijo.jpg" alt="Pão de Queijo"> -->
-                        🧀
-                    </div>
-                    <div class="menu-card-content">
-                        <h3>Pão de Queijo</h3>
-                        <p class="menu-card-description">Pão de queijo mineiro assado na hora, crocante por fora e macio por dentro.</p>
-                        <div class="menu-card-footer">
-                            <div class="menu-price">R$ 7<span>,90</span></div>
-                            <button class="btn-add">
-                                Adicionar
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <path d="M7 3V11M3 7H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- GALERIA DE IMAGENS -->
-        <section class="gallery-section">
-            <div class="section-header">
-                <div class="section-tag">Galeria</div>
-                <h2 class="section-title">Conheça nosso espaço</h2>
-                <p class="section-subtitle">Um ambiente pensado para você relaxar, trabalhar ou encontrar amigos enquanto desfruta do melhor café.</p>
-            </div>
-            
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <!-- COLOQUE SUA IMAGEM AQUI -->
-                    <!-- <img src="galeria-1.jpg" alt="Interior da cafeteria"> -->
-                    <div class="gallery-item-placeholder">🪑</div>
-                    <div class="gallery-item-overlay">
-                        <span>🔍</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <!-- COLOQUE SUA IMAGEM AQUI -->
-                    <!-- <img src="galeria-2.jpg" alt="Barista preparando café"> -->
-                    <div class="gallery-item-placeholder">👨‍🍳</div>
-                    <div class="gallery-item-overlay">
-                        <span>🔍</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <!-- COLOQUE SUA IMAGEM AQUI -->
-                    <!-- <img src="galeria-3.jpg" alt="Grãos de café"> -->
-                    <div class="gallery-item-placeholder">🌱</div>
-                    <div class="gallery-item-overlay">
-                        <span>🔍</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <!-- COLOQUE SUA IMAGEM AQUI -->
-                    <!-- <img src="galeria-4.jpg" alt="Área externa"> -->
-                    <div class="gallery-item-placeholder">🌿</div>
-                    <div class="gallery-item-overlay">
-                        <span>🔍</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- HIGHLIGHT SECTION -->
-        <section class="highlight-section">
-            <div class="highlight-content">
-                <div class="highlight-tag">Oferta Especial</div>
-                <h2 class="highlight-title">Brunch de Domingo</h2>
-                <p class="highlight-description">Todo domingo, das 9h às 13h, desfrute de um brunch completo com café à vontade, pães artesanais, frutas e muito mais. Reserve sua mesa!</p>
-                <a href="https://wa.me/5511999999999" class="btn-primary" target="_blank">
-                    Reservar pelo WhatsApp
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </a>
-            </div>
-            <div class="highlight-image">
-                <!-- COLOQUE SUA IMAGEM AQUI -->
-                <!-- <img src="brunch.jpg" alt="Brunch de Domingo"> -->
-                🥐☕
-            </div>
-        </section>
-
-        <!-- TESTIMONIAL SECTION -->
-        <section class="testimonial-section">
-            <div class="testimonial-quote">
-                "Simplesmente o melhor café da cidade! O ambiente é acolhedor, os funcionários são super atenciosos e o cappuccino é divino. Virou meu lugar favorito para trabalhar e relaxar."
-            </div>
-            <div class="testimonial-author">
-                <div class="testimonial-avatar">AM</div>
-                <div>
-                    <div class="testimonial-name">Ana Martins</div>
-                    <div class="testimonial-role">Cliente fiel há 3 anos</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA SECTION -->
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2>Vem tomar um café com a gente</h2>
-                <p>Faça seu pedido pelo WhatsApp ou venha nos visitar. Temos o ambiente perfeito para você.</p>
-                <a href="https://wa.me/5511999999999" class="btn-primary" target="_blank">
-                    Pedir Agora
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </a>
-            </div>
-        </section>
-    </div>
-
-    <!-- FOOTER MODERNO -->
-    <footer class="modern-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <div class="logo-icon">☕</div>
-                        Café Aroma
-                    </a>
-                    <p>O melhor café da cidade, feito com grãos selecionados e muito amor. Desde 2012 servindo momentos especiais.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M11.5 1.5h-2a2.5 2.5 0 0 0-2.5 2.5v1H5v2.5h2v7h2.5v-7h2l.5-2.5H9.5V4.2c0-.4.3-.7.7-.7h1.3V1.5z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M11.5 1.5h-2a2.5 2.5 0 0 0-2.5 2.5v1H5v2.5h2v7h2.5v-7h2l.5-2.5H9.5V4.2c0-.4.3-.7.7-.7h1.3V1.5z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M11.5 1.5h-2a2.5 2.5 0 0 0-2.5 2.5v1H5v2.5h2v7h2.5v-7h2l.5-2.5H9.5V4.2c0-.4.3-.7.7-.7h1.3V1.5z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h4>Links Rápidos</h4>
-                    <ul>
-                        <li><a href="#">Sobre Nós</a></li>
-                        <li><a href="#">Cardápio</a></li>
-                        <li><a href="#">Galeria</a></li>
-                        <li><a href="#">Depoimentos</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Serviços</h4>
-                    <ul>
-                        <li><a href="#">Café para Viagem</a></li>
-                        <li><a href="#">Brunch de Domingo</a></li>
-                        <li><a href="#">Espaço para Eventos</a></li>
-                        <li><a href="#">Grãos Especiais</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Contato</h4>
-                    <ul>
-                        <li><a href="https://wa.me/5511999999999" target="_blank">WhatsApp: (11) 99999-9999</a></li>
-                        <li><a href="#">contato@cafearoma.com</a></li>
-                        <li><a href="#">Rua do Café, 123</a></li>
-                        <li><a href="#">São Paulo - SP</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2024 Café Aroma. Todos os direitos reservados.
-            </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=600&q=80" alt="Batata Frita Especial">
+        <div class="card-content">
+          <h3 class="card-title">Batata Suprema</h3>
+          <p class="card-desc">Porção grande de batatas palito cobertas com molho cheddar cremoso e farofa de bacon.</p>
+          <div class="card-footer">
+            <span class="card-price">R$ 24,90</span>
+          </div>
         </div>
-    </footer>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80" alt="Milkshake">
+        <div class="card-content">
+          <h3 class="card-title">Milkshake de Nutella</h3>
+          <p class="card-desc">Milkshake artesanal de 500ml com borda de Nutella, sorvete premium e chantilly.</p>
+          <div class="card-footer">
+            <span class="card-price">R$ 18,90</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido." class="whatsapp-float" target="_blank" title="Atendimento via WhatsApp">
+    💬
+  </a>
+
+  <footer>
+    <p><strong>Burger & Cia</strong> - O sabor que você merece.</p>
+    <p>Rua das Lanchonetes, 123 - Centro | Tel: (00) 90000-0000</p>
+  </footer>
+
 </body>
 </html>
