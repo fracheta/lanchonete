@@ -3,284 +3,863 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Burger & Cia - Lanchonete Artesanal</title>
+  <title>Burger & Cia | Lanchonete Artesanal Premium</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2:family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
     :root {
-      --primary: #ff4757;
-      --secondary: #ffa502;
-      --dark: #2f3542;
-      --light: #f1f2f6;
+      --primary: #e63946;
+      --primary-dark: #c1121f;
+      --secondary: #ffb703;
+      --accent: #fb8500;
+      --dark: #1a1a2e;
+      --dark-light: #2d2d44;
+      --text: #2b2d42;
+      --text-light: #8d99ae;
+      --bg: #faf9f6;
+      --card-bg: #ffffff;
       --whatsapp: #25d366;
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.2);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background-color: var(--light);
-      color: var(--dark);
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* Hero Header */
-    header {
-      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
-                  url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 100px 20px 80px;
+    /* Animações */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
 
-    header p {
-      font-size: 1.25rem;
-      margin-bottom: 30px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
     }
 
-    /* Botão Principal */
-    .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background-color: var(--whatsapp);
-      color: white;
-      text-decoration: none;
-      padding: 16px 32px;
-      border-radius: 50px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-      transition: transform 0.2s, background-color 0.2s;
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+      50% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
     }
 
-    .btn-whatsapp:hover {
-      transform: scale(1.05);
-      background-color: #1eb954;
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
     }
 
-    /* Seção Cardápio */
-    .container {
-      max-width: 1100px;
-      margin: 50px auto;
-      padding: 0 20px;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2.5rem;
-      color: var(--dark);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .category-title {
-      font-size: 1.8rem;
-      margin: 40px 0 20px;
-      color: var(--primary);
-      border-bottom: 3px solid var(--secondary);
-      padding-bottom: 8px;
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-    }
-
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
-    .card-content {
-      padding: 20px;
-    }
-
-    .card-title {
-      font-size: 1.3rem;
-      margin-bottom: 8px;
-    }
-
-    .card-desc {
-      color: #666;
-      font-size: 0.95rem;
-      line-height: 1.4;
-      margin-bottom: 15px;
-    }
-
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .card-price {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: var(--primary);
-    }
-
-    /* Botão Flutuante */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: var(--whatsapp);
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      text-align: center;
-      font-size: 30px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 1000;
+    /* Hero Section com efeito parallax sutil */
+    .hero {
+      position: relative;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, 
+        rgba(230, 57, 70, 0.92) 0%, 
+        rgba(26, 26, 46, 0.95) 50%,
+        rgba(255, 183, 3, 0.85) 100%);
+      z-index: 1;
+    }
+
+    .hero-bg-image {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      z-index: 0;
+      animation: slowZoom 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes slowZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 40px 24px;
+      max-width: 800px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      animation: fadeInScale 0.6s ease-out 0.3s both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      letter-spacing: -1px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(120deg, #ffb703, #fb8500);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      font-weight: 300;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    .hero-cta-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 36px;
+      border-radius: 60px;
+      font-size: 1rem;
+      font-weight: 600;
       text-decoration: none;
-      transition: transform 0.2s;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-whatsapp {
+      background: var(--whatsapp);
+      color: #fff;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      animation: pulse 2s infinite;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1eb954;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+      animation: none;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      animation: float 2s ease-in-out infinite;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.5rem;
+    }
+
+    /* Container & Seções */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: rgba(230, 57, 70, 0.1);
+      color: var(--primary);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      color: var(--text-light);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* Categorias */
+    .category-block {
+      margin-bottom: 60px;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .category-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+      flex-shrink: 0;
+    }
+
+    .category-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.3px;
+    }
+
+    .category-line {
+      flex: 1;
+      height: 3px;
+      background: linear-gradient(to right, var(--secondary), transparent);
+      border-radius: 10px;
+    }
+
+    /* Menu Grid */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .menu-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .menu-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-8px);
+      border-color: rgba(230, 57, 70, 0.15);
+    }
+
+    .menu-card-image {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .menu-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .menu-card:hover .menu-card-image img {
+      transform: scale(1.08);
+    }
+
+    .menu-card-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .menu-card-badge.popular {
+      background: linear-gradient(135deg, #ffb703, #fb8500);
+    }
+
+    .menu-card-content {
+      padding: 24px;
+    }
+
+    .menu-card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .menu-card-desc {
+      color: var(--text-light);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      font-weight: 400;
+    }
+
+    .menu-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 16px;
+    }
+
+    .menu-card-price {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .menu-card-price .currency {
+      font-size: 0.9rem;
+      font-weight: 600;
+      vertical-align: super;
+    }
+
+    .menu-card-order-btn {
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .menu-card-order-btn:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(230, 57, 70, 0.3);
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      background: var(--dark);
+      padding: 40px 0;
+      margin-top: 40px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--secondary);
+      letter-spacing: -1px;
+    }
+
+    .stat-item p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: #fff;
+      padding: 50px 0 30px;
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      background: linear-gradient(120deg, #ffb703, #ff6b6b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-info {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .footer-social a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .footer-social a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(230, 57, 70, 0.3);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 25px;
+      margin-top: 30px;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.8rem;
+    }
+
+    /* WhatsApp Float */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 62px;
+      height: 62px;
+      background: var(--whatsapp);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 2rem;
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+      z-index: 1000;
+      text-decoration: none;
+      transition: var(--transition);
+      animation: pulse 2s infinite;
     }
 
     .whatsapp-float:hover {
-      transform: scale(1.1);
+      transform: scale(1.12);
+      animation: none;
+      box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
     }
 
-    footer {
-      background-color: var(--dark);
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-      margin-top: 60px;
+    /* Responsivo */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.05rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .category-header {
+        flex-wrap: wrap;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .btn {
+        padding: 14px 28px;
+        font-size: 0.9rem;
+      }
+
+      .hero-cta-wrapper {
+        flex-direction: column;
+      }
+
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        font-size: 1.7rem;
+        bottom: 20px;
+        right: 20px;
+      }
     }
 
-    footer p {
-      margin-bottom: 5px;
-      font-size: 0.9rem;
-      color: #aaa;
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-badge {
+        font-size: 0.65rem;
+        padding: 6px 14px;
+      }
+
+      .section {
+        padding: 50px 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Burger & Cia</h1>
-    <p>Hambúrgueres artesanais, porções crocantes e os melhores milkshakes da cidade.</p>
-    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido." class="btn-whatsapp" target="_blank">
-      🍔 Fazer Pedido no WhatsApp
-    </a>
-  </header>
+  <!-- Hero Section -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg-image"></div>
+    <div class="hero-content">
+      <span class="hero-badge">🍔 Artesanal & Premium</span>
+      <h1>Burger <span class="highlight">&</span> Cia</h1>
+      <p class="hero-subtitle">Hambúrgueres artesanais suculentos, porções crocantes irresistíveis e milkshakes cremosos que derretem na boca. A experiência gastronômica que você merece.</p>
+      <div class="hero-cta-wrapper">
+        <a href="#cardapio" class="btn btn-outline">
+          <i class="fas fa-utensils"></i> Ver Cardápio
+        </a>
+        <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido." class="btn btn-whatsapp" target="_blank">
+          <i class="fab fa-whatsapp"></i> Fazer Pedido
+        </a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
 
-  <main class="container">
-    <h2 class="section-title">Cardápio</h2>
-    
-    <h3 class="category-title">🍔 Lanches</h3>
-    <div class="menu-grid">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Hambúrguer Artesanal">
-        <div class="card-content">
-          <h3 class="card-title">X-Monster Artesanal</h3>
-          <p class="card-desc">Hambúrguer de 180g, cheddar fatiado, bacon crocante e molho especial no pão brioche.</p>
-          <div class="card-footer">
-            <span class="card-price">R$ 32,90</span>
-          </div>
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>+5K</h3>
+          <p>Clientes Felizes</p>
+        </div>
+        <div class="stat-item">
+          <h3>4.9★</h3>
+          <p>Avaliação Média</p>
+        </div>
+        <div class="stat-item">
+          <h3>30min</h3>
+          <p>Entrega Média</p>
+        </div>
+        <div class="stat-item">
+          <h3>100%</h3>
+          <p>Ingredientes Frescos</p>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80" alt="Hambúrguer Duplo">
-        <div class="card-content">
-          <h3 class="card-title">Duplo Bacon Cheese</h3>
-          <p class="card-desc">Dois hambúrgueres de 120g, dobro de queijo prato, bacon e maionese da casa.</p>
-          <div class="card-footer">
-            <span class="card-price">R$ 36,90</span>
+  <!-- Cardápio -->
+  <main class="container section" id="cardapio">
+    <div class="section-header">
+      <span class="section-tag">Nossas Delícias</span>
+      <h2 class="section-title">Cardápio Completo</h2>
+      <p class="section-subtitle">Preparado com ingredientes selecionados e muito amor em cada detalhe</p>
+    </div>
+
+    <!-- Lanches -->
+    <div class="category-block">
+      <div class="category-header">
+        <div class="category-icon"><i class="fas fa-hamburger"></i></div>
+        <h3 class="category-title">Lanches Artesanais</h3>
+        <div class="category-line"></div>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="X-Monster Artesanal" loading="lazy">
+            <span class="menu-card-badge popular">🔥 Mais Pedido</span>
+          </div>
+          <div class="menu-card-content">
+            <h4 class="menu-card-title">X-Monster Artesanal</h4>
+            <p class="menu-card-desc">Hambúrguer de 180g grelhado na chama, cheddar fatiado derretido, bacon crocante e molho especial da casa no pão brioche artesanal.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price"><span class="currency">R$</span> 32,90</span>
+              <a href="https://wa.me/5500000000000?text=Olá!%20Quero%20pedir%20um%20X-Monster%20Artesanal" class="menu-card-order-btn" target="_blank">
+                Pedir <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80" alt="Duplo Bacon Cheese" loading="lazy">
+            <span class="menu-card-badge">🧀 Cheese Lover</span>
+          </div>
+          <div class="menu-card-content">
+            <h4 class="menu-card-title">Duplo Bacon Cheese</h4>
+            <p class="menu-card-desc">Dois hambúrgueres de 120g, dobro de queijo prato cremoso, bacon sequinho e maionese defumada da casa no pão selado na manteiga.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price"><span class="currency">R$</span> 36,90</span>
+              <a href="https://wa.me/5500000000000?text=Olá!%20Quero%20pedir%20um%20Duplo%20Bacon%20Cheese" class="menu-card-order-btn" target="_blank">
+                Pedir <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=600&q=80" alt="X-Salada Premium" loading="lazy">
+            <span class="menu-card-badge">🥬 Saudável</span>
+          </div>
+          <div class="menu-card-content">
+            <h4 class="menu-card-title">X-Salada Premium</h4>
+            <p class="menu-card-desc">Hambúrguer de 150g, alface americana crocante, tomate fresco, cebola roxa, queijo prato e maionese de ervas finas no pão australiano.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price"><span class="currency">R$</span> 29,90</span>
+              <a href="https://wa.me/5500000000000?text=Olá!%20Quero%20pedir%20um%20X-Salada%20Premium" class="menu-card-order-btn" target="_blank">
+                Pedir <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <h3 class="category-title">🍟 Porções</h3>
-    <div class="menu-grid">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=600&q=80" alt="Batata Frita Especial">
-        <div class="card-content">
-          <h3 class="card-title">Batata Suprema</h3>
-          <p class="card-desc">Porção grande de batatas palito cobertas com molho cheddar cremoso e farofa de bacon.</p>
-          <div class="card-footer">
-            <span class="card-price">R$ 24,90</span>
+    <!-- Porções -->
+    <div class="category-block">
+      <div class="category-header">
+        <div class="category-icon"><i class="fas fa-french-fries"></i></div>
+        <h3 class="category-title">Porções & Acompanhamentos</h3>
+        <div class="category-line"></div>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=600&q=80" alt="Batata Suprema" loading="lazy">
+            <span class="menu-card-badge popular">🔥 Favorita</span>
+          </div>
+          <div class="menu-card-content">
+            <h4 class="menu-card-title">Batata Suprema</h4>
+            <p class="menu-card-desc">Porção generosa de batatas palito sequinhas cobertas com cheddar cremoso derretido e farofa de bacon artesanal crocante.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price"><span class="currency">R$</span> 24,90</span>
+              <a href="https://wa.me/5500000000000?text=Olá!%20Quero%20pedir%20uma%20Batata%20Suprema" class="menu-card-order-btn" target="_blank">
+                Pedir <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1625938146369-ad80241392b4?auto=format&fit=crop&w=600&q=80" alt="Anéis de Cebola">
-        <div class="card-content">
-          <h3 class="card-title">Onion Rings</h3>
-          <p class="card-desc">Anéis de cebola empanados e crocantes, acompanhados de molho barbecue artesanal.</p>
-          <div class="card-footer">
-            <span class="card-price">R$ 21,90</span>
+        <div class="menu-card">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1625938146369-ad80241392b4?auto=format&fit=crop&w=600&q=80" alt="Onion Rings" loading="lazy">
+            <span class="menu-card-badge">🧅 Crocante</span>
+          </div>
+          <div class="menu-card-content">
+            <h4 class="menu-card-title">Onion Rings</h4>
+            <p class="menu-card-desc">Anéis de cebola empanados na farinha panko, super crocantes, acompanhados de molho barbecue artesanal levemente defumado.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price"><span class="currency">R$</span> 21,90</span>
+              <a href="https://wa.me/5500000000000?text=Olá!%20Quero%20pedir%20Onion%20Rings" class="menu-card-order-btn" target="_blank">
+                Pedir <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <h3 class="category-title">🥤 Bebidas & Sobremesas</h3>
-    <div class="menu-grid">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80" alt="Milkshake">
-        <div class="card-content">
-          <h3 class="card-title">Milkshake de Nutella</h3>
-          <p class="card-desc">Milkshake artesanal de 500ml com borda de Nutella, sorvete premium e chantilly.</p>
-          <div class="card-footer">
-            <span class="card-price">R$ 18,90</span>
+    <!-- Bebidas & Sobremesas -->
+    <div class="category-block">
+      <div class="category-header">
+        <div class="category-icon"><i class="fas fa-ice-cream"></i></div>
+        <h3 class="category-title">Bebidas & Sobremesas</h3>
+        <div class="category-line"></div>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80" alt="Milkshake de Nutella" loading="lazy">
+            <span class="menu-card-badge">🍫 Nutella</span>
+          </div>
+          <div class="menu-card-content">
+            <h4 class="menu-card-title">Milkshake de Nutella</h4>
+            <p class="menu-card-desc">Milkshake artesanal de 500ml com borda generosa de Nutella, sorvete premium de baunilha e chantilly fresco.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price"><span class="currency">R$</span> 18,90</span>
+              <a href="https://wa.me/5500000000000?text=Olá!%20Quero%20pedir%20um%20Milkshake%20de%20Nutella" class="menu-card-order-btn" target="_blank">
+                Pedir <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=600&q=80" alt="Refrigerante Gelado">
-        <div class="card-content">
-          <h3 class="card-title">Refrigerante Lata</h3>
-          <p class="card-desc">Lata de 350ml bem gelada. Opções: Coca-Cola, Guaraná Antarctica ou Sprite.</p>
-          <div class="card-footer">
-            <span class="card-price">R$ 6,50</span>
+        <div class="menu-card">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=600&q=80" alt="Refrigerante Gelado" loading="lazy">
+            <span class="menu-card-badge">🥤 Gelado</span>
+          </div>
+          <div class="menu-card-content">
+            <h4 class="menu-card-title">Refrigerante Lata</h4>
+            <p class="menu-card-desc">Lata de 350ml estupidamente gelada. Escolha entre Coca-Cola, Guaraná Antarctica, Sprite ou Fanta Laranja.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price"><span class="currency">R$</span> 6,50</span>
+              <a href="https://wa.me/5500000000000?text=Olá!%20Quero%20pedir%20um%20Refrigerante" class="menu-card-order-btn" target="_blank">
+                Pedir <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1541658016709-82535e94bc69?auto=format&fit=crop&w=600&q=80" alt="Brownie com Sorvete" loading="lazy">
+            <span class="menu-card-badge">🍨 Sobremesa</span>
+          </div>
+          <div class="menu-card-content">
+            <h4 class="menu-card-title">Brownie com Sorvete</h4>
+            <p class="menu-card-desc">Brownie quentinho de chocolate belga com sorvete de creme, calda de chocolate e crocante de castanhas.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price"><span class="currency">R$</span> 15,90</span>
+              <a href="https://wa.me/5500000000000?text=Olá!%20Quero%20pedir%20um%20Brownie%20com%20Sorvete" class="menu-card-order-btn" target="_blank">
+                Pedir <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </main>
 
-  <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido." class="whatsapp-float" target="_blank" title="Atendimento via WhatsApp">
-    💬
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido." class="whatsapp-float" target="_blank" title="Atendimento via WhatsApp" aria-label="Fazer pedido pelo WhatsApp">
+    <i class="fab fa-whatsapp"></i>
   </a>
 
+  <!-- Footer -->
   <footer>
-    <p><strong>Burger & Cia</strong> - O sabor que você merece.</p>
-    <p>Rua das Lanchonetes, 123 - Centro | Tel: (00) 90000-0000</p>
+    <div class="container">
+      <div class="footer-brand">Burger & Cia</div>
+      <p class="footer-info">O sabor artesanal que você merece. Feito com ingredientes frescos e muito amor.</p>
+      <div class="footer-social">
+        <a href="#" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="TikTok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/5500000000000" title="WhatsApp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <p class="footer-info">📍 Rua das Lanchonetes, 123 - Centro | 📞 (00) 90000-0000</p>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Burger & Cia. Todos os direitos reservados. Desenvolvido com ❤️</p>
+      </div>
+    </div>
   </footer>
 
 </body>
